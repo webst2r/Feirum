@@ -1,0 +1,142 @@
+﻿
+body {
+    background-image: linear-gradient( 115deg, hsl(190deg 76% 48%) 0%, hsl(192deg 100% 44%) 4%, hsl(194deg 100% 47%) 8%, hsl(197deg 100% 49%) 13%, hsl(199deg 100% 50%) 19%, hsl(200deg 100% 50%) 26%, hsl(206deg 100% 59%) 33%, hsl(214deg 100% 67%) 41%, hsl(226deg 100% 73%) 51%, hsl(244deg 100% 78%) 61%, hsl(262deg 100% 76%) 71%, hsl(277deg 100% 73%) 82%, hsl(291deg 91% 69%) 91%, hsl(306deg 92% 65%) 100% );
+    /* background: linear-gradient(120deg,#2980b9, #8e44ad); */
+
+    height: 100vh;
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.logginWrapper {
+    display: flex;
+    gap: 20rem;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+h2 {
+    color: white;
+    font-weight: bold;
+    text-align: center;
+}
+
+.form-container {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+form {
+    width: 100%;
+}
+
+input {
+    display: inline-block;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.5rem 1rem;
+    width: 15rem;
+    background-color: #e5e1e1;
+    text-align: center;
+}
+
+::placeholder {
+    font-family: inherit;
+    font-weight: 200;
+    text-align: left;
+    color: black;
+    opacity: 1; /* Firefox */
+
+    text-align: center;
+}
+
+input:focus::-webkit-input-placeholder {
+    font-family: inherit;
+    color: transparent;
+}
+
+
+
+button {
+    font-family: inherit;
+    background-color: white;
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    padding: 0.4rem 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.left-side img {
+    height: 15rem;
+    width: auto;
+}
+
+.left-side p {
+    margin-top: -3rem;
+    color: white;
+    font-weight: 400;
+    font-size: 15px;
+}
+
+.new-user-container {
+    margin-top: 5rem;
+    align-items: center;
+    text-align: center;
+}
+
+.new-user-container p {
+    color: white;
+    font-size: 15px;
+    font-weight: 200;
+}
+
+.new-user-container a {
+    text-decoration: none;
+    color: black;
+    font-family: inherit;
+    background-color: white;
+    border: 1px solid #fff;
+    border-radius: 1rem;
+    padding: 0.4rem 2rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+
+header button {
+    font-family: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 1rem;
+    margin-right: -10rem;
+    float: right;
+    border: none;
+    border-radius: 2rem;
+    padding: 0.4rem 1.5rem;
+    background: white;
+}
+
+header button a {
+    text-decoration: none;
+    color: black;
+}
+
+#forgot-password {
+    
+    color: black;
+}
