@@ -72,38 +72,37 @@ namespace Feirum.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
-            [StringLength(255, ErrorMessage = "The first name field should have a max of 255 characters.", MinimumLength = 6)]
+            [StringLength(255, ErrorMessage = "The first name field should have a max of 255 characters.", MinimumLength = 3)]
             [Display(Name = "Firstname")]
             public string FirstName { get; set; }
 
             [Required]
-            [StringLength(255, ErrorMessage = "The last name field should have a max of 255 characters.", MinimumLength = 6)]
+            [StringLength(255, ErrorMessage = "The last name field should have a max of 255 characters.", MinimumLength = 3)]
             [Display(Name = "Lastname")]
             public string LastName { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+            [Required]
+            [Phone]
+            [Display(Name = "Phone")]
+            public string Phone { get; set; }
+
+            [Required]
+            [StringLength(255, ErrorMessage = "The address field should have a max of 255 characters.", MinimumLength = 6)]
+            [Display(Name = "Address")]
+            public string Address { get; set; }
+
             [Required]
             [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "Password")]
             public string Password { get; set; }
 
-            /// <summary>
-            ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-            ///     directly from your code. This API may change or be removed in future releases.
-            /// </summary>
+
             [DataType(DataType.Password)]
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
@@ -127,6 +126,11 @@ namespace Feirum.Areas.Identity.Pages.Account
 
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
+                user.Email = Input.Email;
+                user.Phone = Input.Phone;
+                user.Balance = 0;
+                user.Address = Input.Address;
+
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

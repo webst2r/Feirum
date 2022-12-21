@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Feirum.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<ul class="navbar-nav">
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+{
+
+        {
+            <li class="nav-item dropdown show">
+                <a class="dropdown-toggle nav-link text-dark" href="#" data-toggle="dropdown">Admin</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fas fa-box mr-2"></i>Categories</a>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="UsersToCategory" asp-action="Index"><i class="fas fa-users mr-2"></i>Users to Category</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-area="Admin" asp-controller="MediaType" asp-action="Index"><i class="fas fa-file-video mr-2"></i>Media Types</a>
+                </div>
+            </li>
+        }
+
+              <!--
+            <div class="dropdown">
+                <button class="btn dropdown-toggle text-light font-weight-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+                        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+                </svg> @UserManager.GetUserName(User)
+            </button>
+            <ul class="dropdown-menu">
+             <li>
+                        <a id="manage" class="dropdown-item" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Perfil</a>
+                    </li>
+
+                <li>
+                        <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                            <button id="logout" type="submit" class="nav-link btn btn-link text-danger text-light dropdown-item"> Logout</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+             -->   
+}
+</ul>
