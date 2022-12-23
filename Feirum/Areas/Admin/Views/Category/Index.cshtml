@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Feirum.Models.Categories>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Índice de categorias</h1>
+
+<a href="/Admin/Category/Create" class="btn btn-outline-info"><i class="fas fa-plus mr-2"></i> Criar</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+               
+                <td>
+                    <partial name="_RUDButtonsPartial" model="@item.Id">
+                    <a asp-controller="Fair" asp-action="Index" asp-route-categoryId="@item.Id" class="btn btn-outline-secondary btn-sm">Gerir Categoria</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

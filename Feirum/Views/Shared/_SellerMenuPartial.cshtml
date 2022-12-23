@@ -1,0 +1,22 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using Feirum.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+<ul class="navbar-nav">
+
+@if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "seller"))
+{
+        <div class="dropdown">
+            <button class="btn dropdown-toggle text-light font-weight-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Comerciante
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <a id="manage" class="dropdown-item" href="/Seller/Fairs" title="Feiras">As minhas feiras</a>
+                </li>
+            </ul>
+        </div>
+}
+</ul>

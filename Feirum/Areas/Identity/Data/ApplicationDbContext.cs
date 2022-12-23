@@ -1,6 +1,8 @@
 ﻿using Feirum.Areas.Identity.Data;
+using Feirum.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Formatters;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -22,6 +24,9 @@ public class ApplicationDbContext : IdentityDbContext<User>
 
         builder.ApplyConfiguration(new UserEntityConfiguration());
     }
+
+    public DbSet<Categories> Categories { get; set; }
+    public DbSet<Fairs> Fairs { get; set; }
 }
 
 public class UserEntityConfiguration : IEntityTypeConfiguration<User>

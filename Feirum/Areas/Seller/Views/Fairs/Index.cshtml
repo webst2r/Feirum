@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Feirum.Models.Fairs>
+
+@{
+    ViewData["Title"] = "Minhas feiras";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>As minhas feiras</h1>
+<p>@ViewBag.userid</p>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info"><i class="fas fa-plus mr-2"></i> Criar Nova</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.OwnerId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OwnerId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.State)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="text-info mr-2"><i class="fas fa-edit"></i> Editar</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id" class="text-dark mr-2"><i class="fas fa-table"></i> Detalhes</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger mr-2"><i class="fas fa-trash"></i> Apagar</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

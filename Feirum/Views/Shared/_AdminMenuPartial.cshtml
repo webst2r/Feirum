@@ -8,18 +8,17 @@
 
 @if (SignInManager.IsSignedIn(User) && await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
 {
-
-        {
-            <li class="nav-item dropdown show">
-                <a class="dropdown-toggle nav-link text-dark" href="#" data-toggle="dropdown">Admin</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index"><i class="fas fa-box mr-2"></i>Categories</a>
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="UsersToCategory" asp-action="Index"><i class="fas fa-users mr-2"></i>Users to Category</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" asp-area="Admin" asp-controller="MediaType" asp-action="Index"><i class="fas fa-file-video mr-2"></i>Media Types</a>
-                </div>
-            </li>
-        }
+        <div class="dropdown">
+            <button class="btn dropdown-toggle text-light font-weight-bold" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+               Admin
+            </button>
+            <ul class="dropdown-menu">
+                <li>
+                    <!-- href="/Admin/Category" -->
+                    <a id="manage" class="dropdown-item" asp-area="Admin" asp-controller="Category" asp-action="Index" title="Categorias">Gerir categorias</a>
+                </li>
+            </ul>
+        </div>
 
               <!--
             <div class="dropdown">

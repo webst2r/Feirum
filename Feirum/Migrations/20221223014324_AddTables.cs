@@ -13,20 +13,22 @@ namespace Feirum.Migrations
                 name: "Categories",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Categories", x => x.Id);
-                    
+
                 });
 
             migrationBuilder.CreateTable(
                 name: "Fairs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     OwnerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CategoryId = table.Column<int>(nullable: false),
                     Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
@@ -56,7 +58,8 @@ namespace Feirum.Migrations
                name: "Products",
                columns: table => new
                {
-                   Id = table.Column<int>(nullable: false),
+                   Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                    FairId = table.Column<int>(nullable: false),
                    Description = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                    Quantity = table.Column<int>(nullable: false),
@@ -84,7 +87,7 @@ namespace Feirum.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_FavoriteFair", x => new { x.UserId, x.FairId});
+                    table.PrimaryKey("PK_FavoriteFair", x => new { x.UserId, x.FairId });
                     table.ForeignKey(
                         name: "FK_FavoriteFair_AspNetUsers_UserId",
                         column: x => x.UserId,
@@ -104,7 +107,8 @@ namespace Feirum.Migrations
                 name: "Orders",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
@@ -124,10 +128,11 @@ namespace Feirum.Migrations
                 name: "OrderItems",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProductId = table.Column<int>(nullable: false),
                     OrderId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>( nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                 },
                 constraints: table =>
@@ -151,7 +156,8 @@ namespace Feirum.Migrations
                 name: "FairImages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     FairId = table.Column<int>(nullable: false),
                     Path = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                 },
@@ -170,7 +176,8 @@ namespace Feirum.Migrations
                 name: "CategoryImages",
                 columns: table => new
                 {
-                    Id = table.Column<int>(nullable: false),
+                    Id = table.Column<int>(nullable: false)
+                         .Annotation("SqlServer:Identity", "1, 1"),
                     CategoryId = table.Column<int>(nullable: false),
                     Path = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
                 },
