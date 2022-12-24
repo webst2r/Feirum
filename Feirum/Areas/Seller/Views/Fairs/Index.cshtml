@@ -15,6 +15,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayName("Id Feira")
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.OwnerId)
             </th>
             <th>
@@ -39,6 +42,9 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.OwnerId)
             </td>
             <td>
@@ -60,6 +66,8 @@
                     <a asp-action="Edit" asp-route-id="@item.Id" class="text-info mr-2"><i class="fas fa-edit"></i> Editar</a> |
                     <a asp-action="Details" asp-route-id="@item.Id" class="text-dark mr-2"><i class="fas fa-table"></i> Detalhes</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id" class="text-danger mr-2"><i class="fas fa-trash"></i> Apagar</a>
+                    <a asp-controller="Products" asp-action="Index" asp-route-FairId="@item.Id" class="btn btn-outline-secondary btn-sm">Gerir Feira</a>
+
             </td>
         </tr>
 }

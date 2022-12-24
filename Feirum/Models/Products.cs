@@ -1,6 +1,6 @@
 ﻿namespace Feirum.Models
 {
-    public class Product
+    public class Products
     {
         public int Id { get; set; }
         public int FairId { get; set; }

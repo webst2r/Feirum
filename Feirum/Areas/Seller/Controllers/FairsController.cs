@@ -27,9 +27,9 @@ namespace Feirum.Areas.Seller.Controllers
         // GET: Seller/Fairs
         [Route("/Seller/Fairs",
            Name = "Fairs")]
-        public async Task<IActionResult> Index()
-        {
-            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
+        public async Task<IActionResult> Index(string ownerId)
+        { 
+            ViewBag.OwnerId = _userManager.GetUserId(HttpContext.User);
             return View(await _context.Fairs.ToListAsync());
         }
 
@@ -58,9 +58,7 @@ namespace Feirum.Areas.Seller.Controllers
            Name = "CreateFair")]
         public IActionResult Create()
         {
-            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
-            
-            ViewBag.categoryOptions = new SelectList(_context.Categories.Select(c => c.Id).ToList(), "Id", "Description");
+            ViewBag.userid = _userManager.GetUserId(HttpContext.User); 
             return View();
         }
 

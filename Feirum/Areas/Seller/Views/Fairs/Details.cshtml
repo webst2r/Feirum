@@ -5,10 +5,10 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Details</h1>
+<h1>Detalhes - @Html.DisplayFor(model => model.Description) </h1>
 
 <div>
-    <h4>Fairs</h4>
+   
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -50,6 +50,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Editar feira</a> |
+    <a asp-action="Index">Regressar à lista</a>
 </div>

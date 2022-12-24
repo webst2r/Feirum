@@ -1,4 +1,6 @@
-﻿using Feirum.Models;
+﻿using Feirum.Areas.Identity.Data;
+using Feirum.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,14 +9,20 @@ namespace Feirum.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
-
-        public HomeController(ILogger<HomeController> logger)
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
+        public HomeController(ILogger<HomeController> logger, ApplicationDbContext context, UserManager<User> userManager)
         {
             _logger = logger;
+            _context = context;
+            _userManager = userManager;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
+            var user = await _userManager.GetUserAsync(User);
+            var balance = user.Balance;
+            ViewBag.userBalance = balance;
             return View();
         }
 

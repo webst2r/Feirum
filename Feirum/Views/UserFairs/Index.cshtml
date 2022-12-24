@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Feirum.Models.Products>
+
+@{
+    ViewData["Title"] = "Produtos da feira";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Produtos da feira @ViewBag.FairId</h1>
+
+<div class="d-flex flex-row">
+    @foreach (var product in Model)
+        {
+            <div class="card p-2" style="width: 18rem;">
+            <img class="card-img-top" src=@product.Image alt="Shopping cart">
+                <div class="card-body">
+                <h5 class="card-title"> @Html.DisplayFor(modelItem => product.Description)</h5>
+                        <a asp-controller="Fairs" asp-action="Index" asp-route-fairId="@product.FairId" class="btn btn-outline-secondary btn-sm">Comprar</a>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+<a asp-controller="CategoriesToUser" asp-action="Index" class="btn btn-primary">Regressar</a>

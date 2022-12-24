@@ -13,24 +13,8 @@ namespace Feirum.Models
         public string? Phone { get; set; }
 
         [NotMapped]
-        public List<Product>? Products { get; set; }
+        public List<Products>? Products { get; set; }
         [NotMapped]
         public List<string>? ImagesURL { get; set; }
-
-        /*
-        public Fairs(int id, string ownerId, int categoryId, string description, bool state, string email, string phone)
-        {
-            Id = id;
-            OwnerId = ownerId;
-            CategoryId = categoryId;
-            Description= description;
-            State = state;
-            Products = new List<Product>();
-            Email = email;
-            Phone = phone;
-            ImagesURL= new List<string>();
-        }
-        */
-     
     }
 }
