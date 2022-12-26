@@ -21,7 +21,7 @@ namespace Feirum.Migrations
             // Adicionar conta do Comerciante à tabela AspNetUsers
             StringBuilder sb = new StringBuilder();
 
-            sb.AppendLine("INSERT INTO AspNetUsers(Id, UserName, NormalizedUserName,Email,EmailConfirmed,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount,NormalizedEmail,PasswordHash,SecurityStamp,FirstName, LastName, Phone, Balance, Address)");
+            sb.AppendLine("INSERT INTO AspNetUsers(Id, UserName, NormalizedUserName,Email,EmailConfirmed,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEnabled,AccessFailedCount,NormalizedEmail,PasswordHash,SecurityStamp,FirstName, LastName, Phone, Amount, Address)");
             sb.AppendLine("VALUES(");
             sb.AppendLine($"'{SELLER_USER_GUID}'");
             sb.AppendLine(",'seller@feirum.pt'");

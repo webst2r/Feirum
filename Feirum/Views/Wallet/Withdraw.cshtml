@@ -1,0 +1,36 @@
+﻿@model EditUserBalanceViewModel
+
+@{
+    ViewData["Title"] = "Depositar saldo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Depositar saldo</h1>
+<h4>@ViewBag.userid</h4>
+
+<form method="post" class="mt-3">
+
+    <div class="form-group row">
+        <label asp-for="Id" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Id" class="form-control">
+            <span asp-validation-for="Id" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label asp-for="Amount" class="col-sm-2 col-form-label"></label>
+        <div class="col-sm-10">
+            <input asp-for="Amount" class="form-control">
+            <span asp-validation-for="Amount" class="text-danger"></span>
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <div class="col-sm-10">
+         <button type="submit" class="btn btn-primary">Levantar</button>
+        </div>
+    </div>
+
+   
+</form>

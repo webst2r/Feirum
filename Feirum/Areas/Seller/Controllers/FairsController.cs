@@ -69,7 +69,8 @@ namespace Feirum.Areas.Seller.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,OwnerId, CategoryId,Description,State,Email,Phone")] Fairs fairs)
         {
-            
+            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
+
             if (ModelState.IsValid)
             {
                 fairs.OwnerId = _userManager.GetUserId(HttpContext.User);

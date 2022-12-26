@@ -3,6 +3,7 @@ using Feirum.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace Feirum.Controllers
 {
@@ -21,8 +22,11 @@ namespace Feirum.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             var user = await _userManager.GetUserAsync(User);
-            var balance = user.Balance;
-            ViewBag.userBalance = balance;
+            if(user != null)
+            {
+                var balance = user.Balance;
+                ViewBag.userBalance = balance;
+            }
             return View();
         }
 

@@ -1,0 +1,10 @@
+﻿@{
+    ViewData["Title"] = "Wallet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>A minha carteira</h1>
+<h4>Saldo: @ViewBag.userBalance</h4>
+
+<a asp-controller="Wallet" asp-action="Deposit" class="btn btn-primary">Depositar</a>
+<a asp-controller="Wallet" asp-action="Withdraw" class="btn btn-primary">Levantar</a>
