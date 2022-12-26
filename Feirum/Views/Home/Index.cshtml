@@ -1,11 +1,20 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Identity
+@using Feirum.Areas.Identity.Data
+
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
     <h1 class="display-4">Bem vindo à FeirUM</h1>
     <p>Faças as suas compras à distância de um clique</p>
-    <div class="col-md-6 text-right">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <div class="col-md-6 text-right">
             <a asp-controller="CategoriesToUser" asp-action="Index" class="btn btn-outline-dark">Explorar Certames</a>
     </div>
+    }
 </div>

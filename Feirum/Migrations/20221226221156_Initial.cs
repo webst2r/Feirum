@@ -53,7 +53,6 @@ namespace Feirum.Migrations
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
                 });
 
-
             migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
@@ -216,12 +215,6 @@ namespace Feirum.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
-
-            migrationBuilder.DropTable(
-                name: "Categories");
-
-            migrationBuilder.DropTable(
-                name: "Fairs");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
