@@ -1,0 +1,13 @@
+﻿@model Feirum.Models.Categories
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Se estás a ver isto é porque falhou a condicao ModelState.IsValid</h1>
+<h4>@ViewBag.errors</h4>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

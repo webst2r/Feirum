@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Feirum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20221226221436_AddAdminAccount")]
-    partial class AddAdminAccount
+    [Migration("20221227140912_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -143,9 +143,6 @@ namespace Feirum.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OwnerId")

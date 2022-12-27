@@ -67,7 +67,7 @@ namespace Feirum.Areas.Seller.Controllers
            Name = "CreateFair")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OwnerId, CategoryId,Description,State,Email,Phone")] Fairs fairs)
+        public async Task<IActionResult> Create([Bind("Id,OwnerId, CategoryId,Description,State,Email,Phone, Image")] Fairs fairs)
         {
             ViewBag.userid = _userManager.GetUserId(HttpContext.User);
 
@@ -102,7 +102,7 @@ namespace Feirum.Areas.Seller.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,CategoryId,Description,State,Email,Phone")] Fairs fairs)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,CategoryId,Description,State,Email,Phone, Image")] Fairs fairs)
         {
             if (id != fairs.Id)
             {

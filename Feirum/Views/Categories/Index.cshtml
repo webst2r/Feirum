@@ -11,7 +11,7 @@
         @foreach(var fair in Model.FairsList)
         {
             <div class="card p-2" style="width: 18rem;">
-                <img class="card-img-top" src="https://vidasimples.co/wp-content/uploads/2019/09/vida-simples-feira-vai-ter-feira-4-1147x523.png" alt="Card image cap">
+                <img class="card-img-top" src=@fair.Image alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@fair.Description</h5>
                     <a asp-controller="UserFairs" asp-action="Index" asp-route-fairId="@fair.Id" class="btn btn-outline-secondary btn-sm">Ver Feira</a>

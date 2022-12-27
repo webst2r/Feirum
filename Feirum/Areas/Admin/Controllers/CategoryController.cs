@@ -1,14 +1,18 @@
-﻿using Feirum.Areas.Identity.Data;
-using Feirum.Models;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Feirum.Areas.Identity.Data;
+using Feirum.Models;
 
 namespace Feirum.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class CategoryController : Controller
     {
-
         private readonly ApplicationDbContext _context;
 
         public CategoryController(ApplicationDbContext context)
@@ -16,13 +20,12 @@ namespace Feirum.Areas.Admin.Controllers
             _context = context;
         }
 
-        // GET: Admin/Category
         [Route("/Admin/Category",
-           Name = "Category")]
+          Name = "Category")]
+        // GET: Admin/Category
         public async Task<IActionResult> Index()
         {
-            //return View(); 
-            return View(await _context.Categories.ToListAsync());
+              return View(await _context.Categories.ToListAsync());
         }
 
         [Route("/Admin/Details",
@@ -30,72 +33,78 @@ namespace Feirum.Areas.Admin.Controllers
         // GET: Admin/Category/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Categories == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var categories = await _context.Categories
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (categories == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(categories);
         }
 
-
-        
         // GET: Admin/Category/Create
         public IActionResult Create()
         {
             return View();
         }
 
-
+        // POST: Admin/Category/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [Route("/Admin/Create",
            Name = "Create")]
-        // POST: Admin/Category/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Description")] Categories category)
+        public async Task<IActionResult> Create([Bind("Id,Description, Image")] Categories categories)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(category);
+                //categories.FairsList = new List<Fairs>();
+                _context.Add(categories);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
+            } else
+            {
+                ViewBag.errors = ModelState.Values.SelectMany(v => v.Errors);
+                return View("Error");
             }
-            return View(category);
+            return View(categories);
         }
 
         [Route("/Admin/Edit",
-           Name = "Edit")]
+          Name = "Edit")]
         // GET: Admin/Category/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Categories == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories.FindAsync(id);
-            if (category == null)
+            var categories = await _context.Categories.FindAsync(id);
+            if (categories == null)
             {
                 return NotFound();
             }
-            return View(category);
+            return View(categories);
         }
 
-        [Route("/Admin/Edit",
-           Name = "Edit")]
         // POST: Admin/Category/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [Route("/Admin/Edit",
+          Name = "Edit")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Description")] Categories category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Description, Image")] Categories categories)
         {
-            if (id != category.Id)
+            if (id != categories.Id)
             {
                 return NotFound();
             }
@@ -104,12 +113,12 @@ namespace Feirum.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(category);
+                    _context.Update(categories);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(category.Id))
+                    if (!CategoriesExists(categories.Id))
                     {
                         return NotFound();
                     }
@@ -120,7 +129,7 @@ namespace Feirum.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(category);
+            return View(categories);
         }
 
         [Route("/Admin/Delete",
@@ -128,19 +137,19 @@ namespace Feirum.Areas.Admin.Controllers
         // GET: Admin/Category/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            if (id == null || _context.Categories == null)
             {
                 return NotFound();
             }
 
-            var category = await _context.Categories
+            var categories = await _context.Categories
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (category == null)
+            if (categories == null)
             {
                 return NotFound();
             }
 
-            return View(category);
+            return View(categories);
         }
 
         [Route("/Admin/Delete",
@@ -150,15 +159,23 @@ namespace Feirum.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var category = await _context.Categories.FindAsync(id);
-            _context.Categories.Remove(category);
+            if (_context.Categories == null)
+            {
+                return Problem("Entity set 'ApplicationDbContext.Categories'  is null.");
+            }
+            var categories = await _context.Categories.FindAsync(id);
+            if (categories != null)
+            {
+                _context.Categories.Remove(categories);
+            }
+            
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool CategoriesExists(int id)
         {
-            return _context.Categories.Any(e => e.Id == id);
+          return _context.Categories.Any(e => e.Id == id);
         }
     }
 }

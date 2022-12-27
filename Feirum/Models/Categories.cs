@@ -7,7 +7,9 @@ namespace Feirum.Models
         public int Id { get; set; }
         public string? Description { get; set; }
 
+        public string? Image { get; set; }
+
         [NotMapped]
-        public List<Fairs> FairsList { get; set; }
+        public List<Fairs>? FairsList { get; set; }
     }
 }

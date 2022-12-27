@@ -35,7 +35,9 @@ namespace Feirum.Controllers
                                            Description = fairs.Description,
                                            State = fairs.State,
                                            Email = fairs.Email,
-                                           Phone = fairs.Phone
+                                           Phone = fairs.Phone,
+                                           Image = fairs.Image
+
                                        }).Distinct().ToListAsync();
             category.FairsList = categoryFairs;
             ViewBag.Categoryid = categoryId;

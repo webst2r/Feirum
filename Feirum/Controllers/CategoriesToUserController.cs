@@ -43,6 +43,7 @@ namespace Feirum.Controllers
                                                  {
                                                      Id = categories.Id,
                                                      Description= categories.Description,
+                                                     Image = categories.Image
                                                  }).Distinct().ToListAsync();
             return categoriesThatHaveFairs;
         }
