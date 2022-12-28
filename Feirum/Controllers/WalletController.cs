@@ -27,7 +27,7 @@ namespace Feirum.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Deposit(string id)
+        public async Task<IActionResult> Deposit()
         {
             var user = await _userManager.GetUserAsync(User);
             ViewBag.userBalance = user.Balance;
@@ -42,6 +42,7 @@ namespace Feirum.Controllers
 
             var model = new EditUserBalanceViewModel
             {
+                Id = uid,
                 Amount = user.Balance
             };
 
@@ -83,7 +84,7 @@ namespace Feirum.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> Withdraw(string id)
+        public async Task<IActionResult> Withdraw()
         {
             var user = await _userManager.GetUserAsync(User);
             ViewBag.userBalance = user.Balance;
@@ -98,6 +99,7 @@ namespace Feirum.Controllers
 
             var model = new EditUserBalanceViewModel
             {
+                Id = uid,
                 Amount = user.Balance
             };
 

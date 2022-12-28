@@ -14,7 +14,8 @@
             <img class="card-img-top" src=@product.Image alt="Shopping cart">
                 <div class="card-body">
                 <h5 class="card-title"> @Html.DisplayFor(modelItem => product.Description)</h5>
-                        <a asp-controller="Fairs" asp-action="Index" asp-route-fairId="@product.FairId" class="btn btn-outline-secondary btn-sm">Comprar</a>
+                <h5> @Html.DisplayFor(modelItem => product.UnitPrice)€</h5>
+                <a asp-controller="Orders" asp-action="Create" asp-route-productId="@product.Id" class="btn btn-outline-secondary btn-sm">Comprar</a>
                 </div>
             </div>
         }

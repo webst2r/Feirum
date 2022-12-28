@@ -29,6 +29,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<Categories> Categories { get; set; }
     public DbSet<Fairs> Fairs { get; set; }
     public DbSet<Products> Products { get; set; }
+    public DbSet<Feirum.Models.Orders> Orders { get; set; }
 }
 
 public class UserEntityConfiguration : IEntityTypeConfiguration<User>

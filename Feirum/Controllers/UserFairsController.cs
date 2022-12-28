@@ -20,6 +20,10 @@ namespace Feirum.Controllers
 
         public async Task<IActionResult> Index(int fairId)
         {
+            var user = await _userManager.GetUserAsync(User);
+            var balance = user.Balance;
+            ViewBag.userBalance = balance;
+
             List<Products> list = await (from productItem in _context.Products
                                          where productItem.FairId == fairId
                                          select new Products

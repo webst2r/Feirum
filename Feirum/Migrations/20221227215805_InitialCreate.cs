@@ -156,6 +156,8 @@ namespace Feirum.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BuyerId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    ProductId = table.Column<int>(nullable: false),
+                    Quantity = table.Column<int>(nullable: false),
                     TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     Date = table.Column<DateTime>(nullable: false)
                 },
@@ -168,34 +170,13 @@ namespace Feirum.Migrations
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
 
-            migrationBuilder.CreateTable(
-                name: "OrderItems",
-                columns: table => new
-                {
-                    Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    ProductId = table.Column<int>(nullable: false),
-                    OrderId = table.Column<int>(type: "int", nullable: false),
-                    Quantity = table.Column<int>(nullable: false),
-                    TotalPrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_OrderItems", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_OrderItems_Products_ProductId",
-                        column: x => x.ProductId,
-                        principalTable: "Products",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_OrderItems_Products_OrderId",
-                        column: x => x.OrderId,
-                        principalTable: "Orders",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.NoAction);
+                       name: "FK_Orders_Products_ProductId",
+                       column: x => x.ProductId,
+                       principalTable: "Products",
+                       principalColumn: "Id",
+                       onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -310,6 +291,11 @@ namespace Feirum.Migrations
               column: "BuyerId");
 
             migrationBuilder.CreateIndex(
+             name: "IX_Orders_ProductId",
+             table: "Orders",
+             column: "ProductId");
+
+            migrationBuilder.CreateIndex(
                name: "IX_Fairs_OwnerId",
                table: "Fairs",
                column: "OwnerId");
@@ -318,11 +304,6 @@ namespace Feirum.Migrations
               name: "IX_Products_FairId",
               table: "Products",
               column: "FairId");
-
-            migrationBuilder.CreateIndex(
-              name: "IX_OrderItems_OrderId",
-              table: "OrderItems",
-              column: "OrderId");
 
             migrationBuilder.CreateIndex(
              name: "IX_FavoriteFair_UserId",
@@ -405,9 +386,6 @@ namespace Feirum.Migrations
 
             migrationBuilder.DropTable(
                 name: "Orders");
-
-            migrationBuilder.DropTable(
-                name: "OrderItems");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
