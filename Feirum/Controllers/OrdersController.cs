@@ -79,6 +79,7 @@ namespace Feirum.Controllers
                                         }).ToListAsync();
 
             var product = list.First();
+            ViewBag.ProductName = product.Description;
 
             if (product != null)
             {
@@ -109,6 +110,7 @@ namespace Feirum.Controllers
 
             var buyerId = _userManager.GetUserId(HttpContext.User);   
             var product = _context.Products.Find(model.ProductId);
+            ViewBag.ProductName = product.Description;
 
 
             if (product != null)
@@ -116,16 +118,19 @@ namespace Feirum.Controllers
                 var user = await _userManager.GetUserAsync(User);
                 var userBalance = user.Balance;
                 var totalCost = model.Quantity * product.UnitPrice;
+                var stock = product.Quantity;
 
-                if (userBalance < totalCost)
+                if (userBalance < totalCost || stock < 0 || stock < model.Quantity )
                 {
                     return View("OrderError");
                 } else
                 {
-                    
+
+                    // atualizar saldo do utilizador
                     var newBalance = userBalance - totalCost;
                     user.Balance = newBalance;
 
+                    // criar order
                     var order = new Orders();
                     order.ProductId = product.Id;
                     order.BuyerId = buyerId;
@@ -134,6 +139,8 @@ namespace Feirum.Controllers
                     order.Date = DateTime.Now;
 
                     _context.Add(order);
+                    product.Quantity -= model.Quantity;
+                    _context.Update(product);
                     await _context.SaveChangesAsync();
 
                     return RedirectToAction(nameof(Index));

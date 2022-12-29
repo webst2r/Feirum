@@ -15,6 +15,7 @@
                 <div class="card-body">
                 <h5 class="card-title"> @Html.DisplayFor(modelItem => product.Description)</h5>
                 <h5> @Html.DisplayFor(modelItem => product.UnitPrice)€</h5>
+                <p> Stock: @Html.DisplayFor(modelItem => product.Quantity)</p>
                 <a asp-controller="Orders" asp-action="Create" asp-route-productId="@product.Id" class="btn btn-outline-secondary btn-sm">Comprar</a>
                 </div>
             </div>
