@@ -41,6 +41,8 @@ namespace Feirum.Controllers
                                        }).Distinct().ToListAsync();
             category.FairsList = categoryFairs;
             ViewBag.Categoryid = categoryId;
+            var chosenCategory = _context.Categories.Find(categoryId);
+            ViewBag.categoryName = chosenCategory.Description;
 
             return View(category);
         }

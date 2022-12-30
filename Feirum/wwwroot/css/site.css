@@ -27,3 +27,59 @@ body {
     font-weight: bold;
     text-align: center;
 }
+
+
+.main-button {
+    margin: 10%;
+    text-align: center;
+    padding-top: 0.8rem;
+}
+
+.main-button-hover {
+    background-image: linear-gradient(to right, #667eea, #764ba2, #6B8DD6, #8E37D7);
+    box-shadow: 0 4px 15px 0 rgba(116, 79, 168, 0.75);
+    width: 200px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    margin: 20px;
+    height: 55px;
+    text-align: center;
+    border: none;
+    background-size: 300% 100%;
+    border-radius: 50px;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.main-button-hover:hover {
+    background-position: 100% 0;
+    moz-transition: all .4s ease-in-out;
+    -o-transition: all .4s ease-in-out;
+    -webkit-transition: all .4s ease-in-out;
+    transition: all .4s ease-in-out;
+}
+
+.main-button-hover:focus {
+    outline: none;
+}
+
+.border-gradient {
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+}
+
+.border-gradient-purple {
+    border-image-source: linear-gradient(to left, #743ad5, #d53a9d);
+}
+
+.border-gradient-hr {
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+    border-image-source: linear-gradient(71deg, rgba(71,24,97,0.6979166666666667) 22%, rgba(11,124,207,0.7847514005602241) 58%, rgba(72,94,192,1) 73%, rgba(204,30,159,0.29175420168067223) 97%);
+}

@@ -1,21 +1,19 @@
 ﻿@model CategoriesToUserModel
 
-<div class="row mt-5">
-    <div class="col-md-10">
-        <h2>Certames</h2>
-    </div>
-</div>
+
+<h1 class="text-center">Categorias</h1>
+<hr class="border-gradient-hr"></hr>
 
 @if (Model != null)
 {   
     <div class="d-flex flex-row">
         @foreach(var category in Model.Categories)
         {
-            <div class="card p-2" style="width: 18rem;">
+            <div class="card p-2 rounded border-gradient border-gradient-purple" style="width: 18rem;">
                 <img class="card-img-top" src=@category.Image alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">@category.Description</h5>
-                        <a asp-controller="Categories" asp-action="Index" asp-route-categoryId="@category.Id" class="btn btn-outline-secondary btn-sm">Explorar</a>
+                    <a asp-controller="Categories" asp-action="Index" asp-route-categoryId="@category.Id" class="btn btn-outline-secondary btn-sm">Explorar</a>
                 </div>
             </div>
         }

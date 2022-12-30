@@ -21,8 +21,11 @@ namespace Feirum.Controllers
         public async Task<IActionResult> Index(int fairId)
         {
             var user = await _userManager.GetUserAsync(User);
+            var fair = _context.Fairs.Find(fairId);
             var balance = user.Balance;
             ViewBag.userBalance = balance;
+            ViewBag.fairName = fair.Description;
+            ViewBag.fairImage = fair.Image;
 
             List<Products> list = await (from productItem in _context.Products
                                          where productItem.FairId == fairId

@@ -9,12 +9,15 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Bem vindo à FeirUM</h1>
-    <p>Faças as suas compras à distância de um clique</p>
+    <div class="mt-5">
+        <h1 class="display-4">Bem vindo à FeirUM</h1>
+        <p>Faças as suas compras à distância de um clique</p>
+    </div>
+
     @if (SignInManager.IsSignedIn(User))
     {
-        <div class="col-md-6 text-right">
-            <a asp-controller="CategoriesToUser" asp-action="Index" class="btn btn-outline-dark">Explorar Certames</a>
-    </div>
+        <div class="text-center mt-5">
+            <a asp-controller="CategoriesToUser" asp-action="Index" class="btn btn-outline-dark main-button main-button-hover">Explorar Certames</a>
+        </div>
     }
 </div>
