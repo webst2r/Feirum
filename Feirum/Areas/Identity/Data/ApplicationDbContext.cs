@@ -22,6 +22,8 @@ public class ApplicationDbContext : IdentityDbContext<User>
         // Customize the ASP.NET Identity model and override the defaults if needed.
         // For example, you can rename the ASP.NET Identity table names and more.
         // Add your customizations after calling base.OnModelCreating(builder);
+        builder.Entity<FavoriteFair>()
+       .HasKey(p => new { p.UserId, p.FairId });
 
         builder.ApplyConfiguration(new UserEntityConfiguration());
     }
@@ -30,6 +32,7 @@ public class ApplicationDbContext : IdentityDbContext<User>
     public DbSet<Fairs> Fairs { get; set; }
     public DbSet<Products> Products { get; set; }
     public DbSet<Feirum.Models.Orders> Orders { get; set; }
+    public DbSet<Feirum.Models.FavoriteFair> FavoriteFair { get; set; }
 }
 
 public class UserEntityConfiguration : IEntityTypeConfiguration<User>

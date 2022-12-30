@@ -21,12 +21,21 @@ namespace Feirum.Controllers
         public async Task<IActionResult> Index(int fairId)
         {
             var user = await _userManager.GetUserAsync(User);
+            var userId = await _userManager.GetUserIdAsync(user);
             var fair = _context.Fairs.Find(fairId);
             var balance = user.Balance;
+            ViewBag.fairId = fair.Id;
             ViewBag.userBalance = balance;
             ViewBag.fairName = fair.Description;
             ViewBag.fairImage = fair.Image;
             ViewBag.categoryId = fair.CategoryId;
+
+            var favoriteFair = _context.FavoriteFair.Find(userId, fairId);
+            if(favoriteFair == null)
+            {
+                ViewBag.isFavorite = false;
+            } else { ViewBag.isFavorite = true; }
+            
 
             List<Products> list = await (from productItem in _context.Products
                                          where productItem.FairId == fairId
