@@ -26,6 +26,7 @@ namespace Feirum.Controllers
             ViewBag.userBalance = balance;
             ViewBag.fairName = fair.Description;
             ViewBag.fairImage = fair.Image;
+            ViewBag.categoryId = fair.CategoryId;
 
             List<Products> list = await (from productItem in _context.Products
                                          where productItem.FairId == fairId
