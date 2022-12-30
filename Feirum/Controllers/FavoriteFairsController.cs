@@ -7,16 +7,20 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Feirum.Areas.Identity.Data;
 using Feirum.Models;
+using Microsoft.AspNetCore.Identity;
 
 namespace Feirum.Controllers
 {
     public class FavoriteFairsController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly UserManager<User> _userManager;
 
-        public FavoriteFairsController(ApplicationDbContext context)
+        public FavoriteFairsController(ApplicationDbContext context, UserManager<User> userManager)
         {
             _context = context;
+            _userManager = userManager;
+
         }
 
         // GET: FavoriteFairs
@@ -44,9 +48,14 @@ namespace Feirum.Controllers
         }
 
         // GET: FavoriteFairs/Create
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync(int FairId)
         {
-            return View();
+            FavoriteFair favoriteFair = new FavoriteFair();
+            var user = await _userManager.GetUserAsync(User);
+            var userId = await _userManager.GetUserIdAsync(user);
+            favoriteFair.UserId = userId;
+            favoriteFair.FairId = FairId;
+            return View(favoriteFair);
         }
 
         // POST: FavoriteFairs/Create
@@ -54,15 +63,13 @@ namespace Feirum.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("UserId,FairId")] FavoriteFair favoriteFair)
+        public async Task<IActionResult> Create(int FairId, FavoriteFair favoriteFair)
         {
-            if (ModelState.IsValid)
-            {
-                _context.Add(favoriteFair);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            return View(favoriteFair);
+
+            _context.Add(favoriteFair);
+            await _context.SaveChangesAsync();
+            
+            return RedirectToAction("Index", "UserFairs", new { fairId = FairId });
         }
 
         // GET: FavoriteFairs/Edit/5
@@ -147,7 +154,7 @@ namespace Feirum.Controllers
             }
             
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Index", "UserFairs", new { fairId = fairId });
         }
 
         private bool FavoriteFairExists(string id)

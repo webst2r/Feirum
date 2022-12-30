@@ -26,9 +26,11 @@ namespace Feirum.Controllers
             var balance = user.Balance;
             ViewBag.fairId = fair.Id;
             ViewBag.userBalance = balance;
+            ViewBag.userId = userId;
             ViewBag.fairName = fair.Description;
             ViewBag.fairImage = fair.Image;
             ViewBag.categoryId = fair.CategoryId;
+            
 
             var favoriteFair = _context.FavoriteFair.Find(userId, fairId);
             if(favoriteFair == null)
