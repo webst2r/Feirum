@@ -25,8 +25,8 @@ namespace Feirum.Controllers
 
         // GET: FavoriteFairs
         public async Task<IActionResult> Index()
-        {
-              return View(await _context.FavoriteFair.ToListAsync());
+        {   
+            return View(await _context.FavoriteFair.ToListAsync());
         }
 
         // GET: FavoriteFairs/Details/5
@@ -55,6 +55,8 @@ namespace Feirum.Controllers
             var userId = await _userManager.GetUserIdAsync(user);
             favoriteFair.UserId = userId;
             favoriteFair.FairId = FairId;
+            var fair = _context.Fairs.Find(FairId);
+            ViewBag.FairName = fair.Description;
             return View(favoriteFair);
         }
 
