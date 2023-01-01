@@ -164,6 +164,19 @@ namespace Feirum.Migrations
                     b.ToTable("Fairs");
                 });
 
+            modelBuilder.Entity("Feirum.Models.FavoriteFair", b =>
+                {
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("FairId")
+                        .HasColumnType("int");
+
+                    b.HasKey("UserId", "FairId");
+
+                    b.ToTable("FavoriteFair");
+                });
+
             modelBuilder.Entity("Feirum.Models.Orders", b =>
                 {
                     b.Property<int>("Id")
@@ -172,8 +185,9 @@ namespace Feirum.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("BuyerId")
-                        .HasColumnType("int");
+                    b.Property<string>("BuyerId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -189,7 +203,7 @@ namespace Feirum.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Order");
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("Feirum.Models.Products", b =>
