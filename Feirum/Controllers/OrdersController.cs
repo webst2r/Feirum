@@ -56,6 +56,39 @@ namespace Feirum.Controllers
             return View(myOrders);
         }
 
+        public async Task<IActionResult> SellerSales()
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var userId = await _userManager.GetUserIdAsync(user);
+            var balance = user.Balance;
+            ViewBag.userName = user.FirstName + " " + user.LastName;
+            ViewBag.userBalance = balance;
+            ViewBag.BuyerId = _userManager.GetUserId(HttpContext.User);
+
+            var allOrders = await _context.Orders.ToListAsync();
+
+            List<Orders> mySales = await (from orders in _context.Orders
+                                          join products in _context.Products
+                                          on orders.ProductId equals products.Id
+                                          join fairs in _context.Fairs
+                                          on products.FairId equals fairs.Id
+                                          where fairs.OwnerId== userId
+
+                                           select new Orders
+                                           {
+                                               Id = orders.Id,
+                                               ProductId = orders.ProductId,
+                                               BuyerId = orders.BuyerId,
+                                               Quantity = orders.Quantity,
+                                               TotalPrice = orders.TotalPrice,
+                                               Date = orders.Date
+                                           }).ToListAsync();
+
+            return View(mySales);
+        }
+
+
+
         [Route("/Orders/Details",
            Name = "OrderDetails")]
         // GET: Orders/Details/5

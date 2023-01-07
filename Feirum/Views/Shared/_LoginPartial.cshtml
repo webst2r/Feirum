@@ -56,7 +56,7 @@
                 @if (await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "seller"))
                 {
                     <li>
-                        <a id="manage" class="dropdown-item" asp-controller="Orders" asp-action="Index">Histórico de vendas</a>
+                        <a id="manage" class="dropdown-item" asp-controller="Orders" asp-action="SellerSales">Histórico de vendas</a>
                     </li>
                 }
 
