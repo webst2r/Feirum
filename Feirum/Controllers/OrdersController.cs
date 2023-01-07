@@ -33,6 +33,7 @@ namespace Feirum.Controllers
         {
             var user = await _userManager.GetUserAsync(User);
             var balance = user.Balance;
+            ViewBag.userName = user.FirstName+ " " + user.LastName;
             ViewBag.userBalance = balance;
             ViewBag.BuyerId = _userManager.GetUserId(HttpContext.User);
             return View(await _context.Orders.ToListAsync());
@@ -54,6 +55,8 @@ namespace Feirum.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.productName = _context.Products.FindAsync(orders.ProductId).Result.Description;
 
             return View(orders);
         }
@@ -105,6 +108,7 @@ namespace Feirum.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(int productId, AddOrderViewModel model)
         {
+           
             ViewBag.ProductId = productId;
             ViewBag.BuyerId = _userManager.GetUserId(HttpContext.User);
 
@@ -117,6 +121,7 @@ namespace Feirum.Controllers
             {
                 var user = await _userManager.GetUserAsync(User);
                 var userBalance = user.Balance;
+                ViewBag.userBalance = userBalance;
                 var totalCost = model.Quantity * product.UnitPrice;
                 var stock = product.Quantity;
 

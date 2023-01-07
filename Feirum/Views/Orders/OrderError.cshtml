@@ -4,8 +4,6 @@
 }
 
 <h1>Erro ao efetuar compra</h1>
-<h4>Motivos possíveis: Saldo ou Stock insuficientes</h4>
-
-<div>
-    <a asp-controller="CategoriesToUser" asp-action="Index">Regressar</a>
-</div>
+<h4>Motivos possíveis:</h4>
+<p>Saldo insuficiente: <a asp-controller="Wallet" asp-action="Deposit">Depositar</a></p>
+<p>Stock insuficiente: <a asp-controller="CategoriesToUser" asp-action="Index">Voltar</a></p>
