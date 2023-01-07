@@ -12,6 +12,7 @@ using System.Security.Cryptography;
 using Microsoft.CodeAnalysis;
 using static NuGet.Packaging.PackagingConstants;
 using NuGet.Versioning;
+using Microsoft.Extensions.Configuration.UserSecrets;
 
 namespace Feirum.Controllers
 {
@@ -32,11 +33,27 @@ namespace Feirum.Controllers
         public async Task<IActionResult> Index()
         {
             var user = await _userManager.GetUserAsync(User);
+            var userId = await _userManager.GetUserIdAsync(user);
             var balance = user.Balance;
             ViewBag.userName = user.FirstName+ " " + user.LastName;
             ViewBag.userBalance = balance;
             ViewBag.BuyerId = _userManager.GetUserId(HttpContext.User);
-            return View(await _context.Orders.ToListAsync());
+
+            var allOrders = await _context.Orders.ToListAsync();
+
+            List<Orders> myOrders = await (from orders in _context.Orders
+                                         where orders.BuyerId == userId
+                                         select new Orders
+                                         {
+                                            Id = orders.Id,
+                                            ProductId = orders.ProductId,
+                                            BuyerId= orders.BuyerId,
+                                            Quantity= orders.Quantity,
+                                            TotalPrice= orders.TotalPrice,
+                                            Date= orders.Date
+                                         }).ToListAsync();
+
+            return View(myOrders);
         }
 
         [Route("/Orders/Details",
