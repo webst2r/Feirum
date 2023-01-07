@@ -107,6 +107,11 @@ namespace Feirum.Controllers
             }
 
             ViewBag.productName = _context.Products.FindAsync(orders.ProductId).Result.Description;
+            var isSeller = await _userManager.IsInRoleAsync(_userManager.GetUserAsync(User).Result, "seller");
+            if (isSeller)
+            {
+                ViewBag.userType = "seller";
+            }
 
             return View(orders);
         }
