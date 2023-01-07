@@ -3,7 +3,7 @@ body {
     background-image: linear-gradient( 115deg, hsl(190deg 76% 48%) 0%, hsl(192deg 100% 44%) 4%, hsl(194deg 100% 47%) 8%, hsl(197deg 100% 49%) 13%, hsl(199deg 100% 50%) 19%, hsl(200deg 100% 50%) 26%, hsl(206deg 100% 59%) 33%, hsl(214deg 100% 67%) 41%, hsl(226deg 100% 73%) 51%, hsl(244deg 100% 78%) 61%, hsl(262deg 100% 76%) 71%, hsl(277deg 100% 73%) 82%, hsl(291deg 91% 69%) 91%, hsl(306deg 92% 65%) 100% );
     /* background: linear-gradient(120deg,#2980b9, #8e44ad); */
 
-    height: 100vh;
+    height: 100%;
     font-family: 'Roboto', sans-serif;
 }
 
@@ -123,7 +123,7 @@ header button {
     font-weight: 600;
     cursor: pointer;
     margin-top: 1rem;
-    margin-right: -10rem;
+    margin-right: 1rem;
     float: right;
     border: none;
     border-radius: 2rem;

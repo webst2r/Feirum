@@ -28,7 +28,10 @@ namespace Feirum.Areas.Seller.Controllers
         [Route("/Seller/Fairs",
            Name = "Fairs")]
         public async Task<IActionResult> Index(string ownerId)
-        { 
+        {
+            var user = await _userManager.GetUserAsync(User);
+            var balance = user.Balance;
+            ViewBag.userBalance = balance;
             ViewBag.OwnerId = _userManager.GetUserId(HttpContext.User);
             return View(await _context.Fairs.ToListAsync());
         }
@@ -38,6 +41,9 @@ namespace Feirum.Areas.Seller.Controllers
         // GET: Seller/Fairs/Details/5
         public async Task<IActionResult> Details(int? id)
         {
+            var user = await _userManager.GetUserAsync(User);
+            var balance = user.Balance;
+            ViewBag.userBalance = balance;
             if (id == null || _context.Fairs == null)
             {
                 return NotFound();
