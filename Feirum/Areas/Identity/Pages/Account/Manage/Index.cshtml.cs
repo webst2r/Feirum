@@ -69,6 +69,7 @@ namespace Feirum.Areas.Identity.Pages.Account.Manage
         {
             var userName = await _userManager.GetUserNameAsync(user);
             var phoneNumber = await _userManager.GetPhoneNumberAsync(user);
+           
             var address = user.Address;
 
             Username = userName;
@@ -116,7 +117,7 @@ namespace Feirum.Areas.Identity.Pages.Account.Manage
 
             if (Input.PhoneNumber != phoneNumber)
             {
-                user.Address = Input.PhoneNumber;
+                user.PhoneNumber = Input.PhoneNumber;
             }
             var result = await _userManager.UpdateAsync(user);
             if (!result.Succeeded)
