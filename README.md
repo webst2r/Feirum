@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://i.imgur.com/hHBBLZG.png" width="320px" height="220px"/>
+    <img src="https://i.imgur.com/hHBBLZG.png" width="1024px" height="330px"/>
 </div>
 
 # FeirUM: Online fairs 
