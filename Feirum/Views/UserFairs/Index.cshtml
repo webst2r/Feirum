@@ -38,12 +38,14 @@
     @foreach (var product in Model)
         {
             <div class="card p-2" style="width: 18rem;">
-            <img class="card-img-top" src=@product.Image alt="Shopping cart">
+               
+                 <img class="card-img-top product_card_image" src=@product.Image alt="Product card">
+
                 <div class="card-body">
-                <h5 class="card-title"> @Html.DisplayFor(modelItem => product.Description)</h5>
-                <h5> @Html.DisplayFor(modelItem => product.UnitPrice)€</h5>
-                <p> Stock: @Html.DisplayFor(modelItem => product.Quantity)</p>
-                <a asp-controller="Orders" asp-action="Create" asp-route-productId="@product.Id" class="btn btn-outline-secondary btn-sm">Comprar</a>
+                    <h5 class="card-title"> @Html.DisplayFor(modelItem => product.Description)</h5>
+                    <h5> @Html.DisplayFor(modelItem => product.UnitPrice)€</h5>
+                    <p> Stock: @Html.DisplayFor(modelItem => product.Quantity)</p>
+                    <a asp-controller="Orders" asp-action="Create" asp-route-productId="@product.Id" class="btn btn-outline-secondary btn-sm">Comprar</a>
                 </div>
             </div>
         }

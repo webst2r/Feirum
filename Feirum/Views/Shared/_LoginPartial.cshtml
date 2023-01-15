@@ -67,10 +67,13 @@
                         <a id="manage" class="dropdown-item" asp-controller="Orders" asp-action="SellerSales">Histórico de vendas</a>
                     </li>
                 }
-
-                <li>
+                @if (!await UserManager.IsInRoleAsync(UserManager.GetUserAsync(User).Result, "admin"))
+                {
+                    <li>
                     <a id="manage" class="dropdown-item" asp-controller="Orders" asp-action="Index">Histórico de compras</a>
-                </li>    
+                </li>   
+                }
+                
                 
                 <li>
                         <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">

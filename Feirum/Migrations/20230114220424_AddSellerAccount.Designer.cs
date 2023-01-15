@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Feirum.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230101145748_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230114220424_AddSellerAccount")]
+    partial class AddSellerAccount
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

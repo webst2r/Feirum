@@ -1,19 +1,15 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using Feirum.Areas.Identity.Data;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace Feirum.Models
 {
-    public class Fairs
+    public class CreateFairViewModel
     {
-        public int Id { get; set; }
-        public string OwnerId { get; set; }
         public int CategoryId { get; set; }
         public string Description { get; set; }
         public string? Email { get; set; }
         public string? Phone { get; set; }
-
         public string? Image { get; set; }
-
-        [NotMapped]
-        public List<Products>? Products { get; set; }
     }
 }

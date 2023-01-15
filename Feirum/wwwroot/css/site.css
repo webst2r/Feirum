@@ -83,3 +83,11 @@ body {
     border-width: 2px;
     border-image-source: linear-gradient(71deg, rgba(71,24,97,0.6979166666666667) 22%, rgba(11,124,207,0.7847514005602241) 58%, rgba(72,94,192,1) 73%, rgba(204,30,159,0.29175420168067223) 97%);
 }
+
+.truncate_txt {
+    width: 100px;
+    max-width: 400px; /* add this */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}

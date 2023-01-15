@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Feirum.Areas.Identity.Data;
 using Feirum.Models;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis;
 
 
 namespace Feirum.Areas.Seller.Controllers
@@ -62,9 +63,11 @@ namespace Feirum.Areas.Seller.Controllers
         // GET: Seller/Fairs/Create
         [Route("/Seller/Create",
            Name = "CreateFair")]
-        public IActionResult Create()
+        public async Task<IActionResult> CreateAsync()
         {
-            ViewBag.userid = _userManager.GetUserId(HttpContext.User); 
+            var user = await _userManager.GetUserAsync(User);
+            var balance = user.Balance;
+            ViewBag.userid = _userManager.GetUserId(HttpContext.User);
             return View();
         }
 
@@ -73,18 +76,25 @@ namespace Feirum.Areas.Seller.Controllers
            Name = "CreateFair")]
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,OwnerId, CategoryId,Description,State,Email,Phone, Image")] Fairs fairs)
+        public async Task<IActionResult> Create([Bind("CategoryId,Description,Email,Phone, Image")] CreateFairViewModel model)
         {
             ViewBag.userid = _userManager.GetUserId(HttpContext.User);
 
             if (ModelState.IsValid)
             {
+                Fairs fairs = new Fairs();
                 fairs.OwnerId = _userManager.GetUserId(HttpContext.User);
+                fairs.CategoryId = model.CategoryId;
+                fairs.Description = model.Description;
+                fairs.Email = model.Email;
+                fairs.Phone = model.Phone;
+                fairs.Image = model.Image;
+
                 _context.Add(fairs);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(fairs);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: Seller/Fairs/Edit/5
@@ -108,7 +118,7 @@ namespace Feirum.Areas.Seller.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,CategoryId,Description,State,Email,Phone, Image")] Fairs fairs)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,OwnerId,CategoryId,Description,Email,Phone, Image")] Fairs fairs)
         {
             if (id != fairs.Id)
             {

@@ -33,7 +33,6 @@ namespace Feirum.Controllers
                                            OwnerId = fairs.OwnerId,
                                            CategoryId = categoryId,
                                            Description = fairs.Description,
-                                           State = fairs.State,
                                            Email = fairs.Email,
                                            Phone = fairs.Phone,
                                            Image = fairs.Image
