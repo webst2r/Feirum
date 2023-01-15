@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Feirum.Areas.Identity.Pages.Account
 {
@@ -26,6 +27,7 @@ namespace Feirum.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> _signInManager;
         private readonly UserManager<User> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IUserStore<User> _userStore;
         private readonly IUserEmailStore<User> _emailStore;
         private readonly ILogger<RegisterModel> _logger;
@@ -35,6 +37,7 @@ namespace Feirum.Areas.Identity.Pages.Account
             UserManager<User> userManager,
             IUserStore<User> userStore,
             SignInManager<User> signInManager,
+            RoleManager<IdentityRole> roleManager,
             ILogger<RegisterModel> logger,
             IEmailSender emailSender)
         {
@@ -42,6 +45,7 @@ namespace Feirum.Areas.Identity.Pages.Account
             _userStore = userStore;
             _emailStore = GetEmailStore();
             _signInManager = signInManager;
+            _roleManager = roleManager;
             _logger = logger;
             _emailSender = emailSender;
         }
@@ -107,6 +111,11 @@ namespace Feirum.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            public string? Role { get; set; }
+
+            [Display(Name = "Role")]
+            public IEnumerable<SelectListItem>? RoleList { get; set; }
         }
 
 
@@ -114,6 +123,25 @@ namespace Feirum.Areas.Identity.Pages.Account
         {
             ReturnUrl = returnUrl;
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
+            Input = new InputModel()
+            {
+
+                RoleList = new List<SelectListItem>
+                {
+                    new SelectListItem {Text = "Cliente", Value="Cliente"},
+                    new SelectListItem {Text = "Comerciante", Value="Comerciante"},
+                }
+                /*
+                    RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
+                    {
+                        Text = i,
+                        Value = i
+                    })
+
+                };
+                */
+            };
         }
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
@@ -131,7 +159,6 @@ namespace Feirum.Areas.Identity.Pages.Account
                 user.Balance = 0;
                 user.Address = Input.Address;
 
-
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
                 var result = await _userManager.CreateAsync(user, Input.Password);
@@ -139,6 +166,12 @@ namespace Feirum.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");
+
+                    if(Input.Role == "Comerciante")
+                    {
+                        await _userManager.AddToRoleAsync(user, "seller"); 
+                       
+                    } 
 
                     var userId = await _userManager.GetUserIdAsync(user);
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
