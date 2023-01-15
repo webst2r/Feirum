@@ -2,8 +2,10 @@
     <img src="https://cdn.discordapp.com/attachments/1026633592685744148/1031594134760345670/FeiRUM-removebg-preview.png" width="320px" height="220px"/>
 </div>
 
-# E-Commerce-App   
-FeirUM is an E-commerce Webapp created with ASP.NET. (Informatic Labs IV assignment at University of Minho).
+# FeirUM: Online fairs 
+FeirUM web application for online fairs where merchants can sell their products to interested customers.  
+
+Created with ASP.NET Core.
 
 <div>
     <img src="https://i.imgur.com/pajXNZX.png" width="400px" height="225px"/>
