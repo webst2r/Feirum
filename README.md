@@ -6,7 +6,7 @@
 FeirUM is an E-commerce Webapp created with ASP.NET. (Informatic Labs IV assignment at University of Minho).
 
 <div>
-    <img src="https://i.imgur.com/BtZ21rC.png" width="450px" height="300px"/>
+    <img src="https://i.imgur.com/pajXNZX.png" width="450px" height="300px"/>
     <img src="https://i.imgur.com/ApzlvEC.png" width="450px" height="300px"/>
     <img src="https://i.imgur.com/cA2Bx1F.png" width="450px" height="300px"/>
 </div>
