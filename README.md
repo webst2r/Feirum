@@ -1,5 +1,5 @@
 <div align="center">
-    <img src="https://cdn.discordapp.com/attachments/1026633592685744148/1031594134760345670/FeiRUM-removebg-preview.png" width="320px" height="220px"/>
+    <img src="blob:https://imgur.com/921461d3-6baa-4b2e-846c-12a7fb8f2bdb" width="320px" height="220px"/>
 </div>
 
 # FeirUM: Online fairs 
