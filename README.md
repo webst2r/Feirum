@@ -1,7 +1,7 @@
 # FeirUM: Online fairs 
 FeirUM web application for online fairs where merchants can sell their products to interested customers.  
 
-Created with ASP.NET Core.
+Created with ASP.NET Core & Identity Framework, HTML, CSS & JS.
 
 <div>
     <img src="https://i.imgur.com/pajXNZX.png" width="400px" height="225px"/>
