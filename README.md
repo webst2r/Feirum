@@ -1,7 +1,3 @@
-<div align="center">
-    <img src="https://i.imgur.com/hHBBLZG.png" width="1024px" height="330px"/>
-</div>
-
 # FeirUM: Online fairs 
 FeirUM web application for online fairs where merchants can sell their products to interested customers.  
 
